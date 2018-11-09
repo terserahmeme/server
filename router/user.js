@@ -77,8 +77,8 @@ router.get('/', auth, function (req, res) {
         })
 })
 
-router.get('/memes', auth, function (req, res) {
-    User.findById(req.user._id)
+router.get('/:id', auth, function (req, res) {
+    User.findById(req.params.id)
         .populate('memes')
         .then((result) => {
             res.status(200).json(result)
