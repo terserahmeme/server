@@ -5,6 +5,8 @@ const express = require('express'),
       {auth} = require('../middleware/auth.js'),
       User = require('../models/user')
 
+const images = require('../helpers/images')
+
 /* GET main endpoint. */
 
 
@@ -17,6 +19,17 @@ router.post('/', auth, function(req, res){
   }).catch((err) => {
     res.status(500).json(err)
   });
+})
+
+router.post('/upload',
+    images.multer.single('image'), 
+    images.sendUploadToGCS,
+    (req, res) => {
+        res.send({
+        status: 200,
+        message: 'Your file is successfully uploaded',
+        link: req.file.cloudStoragePublicUrl
+    })
 })
 
 module.exports = router
