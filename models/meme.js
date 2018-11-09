@@ -12,7 +12,16 @@ var memeSchema = new Schema({
 
 memeSchema.post('save', function(doc){
   console.log('doc', doc, 'user', req.user)
-  // User.findByIdAndUpdate(req.user._id)
+  User.findByIdAndUpdate(req.user.id, {
+    $push: {
+      memes: doc.url
+    }
+  })
+  .then((result) => {
+    console.log('success push meme to user')
+  }).catch((err) => {
+    console.log('FAIL push meme to user')
+  });
 })
 
 var Meme = mongoose.model('Meme', memeSchema);
