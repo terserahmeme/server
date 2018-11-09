@@ -11,7 +11,6 @@ var memeSchema = new Schema({
 });
 
 memeSchema.post('save', function(doc){
-  console.log('doc', doc, 'user', req.user)
   User.findByIdAndUpdate(req.user.id, {
     $push: {
       memes: doc.url

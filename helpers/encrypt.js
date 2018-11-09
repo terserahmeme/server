@@ -13,5 +13,4 @@ class Encrypt {
   
 }
 
-// console.log(Encrypt.hashPassword('123','asdf'))
 module.exports = Encrypt
