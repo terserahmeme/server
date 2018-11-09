@@ -12,7 +12,6 @@ var memeSchema = new Schema({
 
 memeSchema.post('save', function(doc){
   console.log('doc', doc, 'user', req.user)
-  // User.findByIdAndUpdate(req.user._id)
 })
 
 var Meme = mongoose.model('Meme', memeSchema);

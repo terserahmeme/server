@@ -33,7 +33,6 @@ var userSchema = new Schema({
   memes:[{type: Schema.Types.ObjectId, ref: 'Meme'}]  
 });
 
-// userSchema.plugin(uniqueValidator)
 
 userSchema.pre('save', function(next) {
   this.password = encrypt.hashPassword(this.password, this.email)
